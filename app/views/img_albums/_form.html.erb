@@ -1,0 +1,54 @@
+<%= javascript_include_tag 'img_albums' %>
+<div class="container">
+<%= nested_form_for @album do |f| %>
+  <% if @album.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= "#{pluralize(@album.errors.count, "error")} prohibited this post from being saved:" %>
+      </h2>
+      <ul>
+        <% @album.errors.full_messages.each do |msg| %>
+          <li>
+            <%= msg %>
+          </li>
+          <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <%= f.text_field :name, placeholder: 'Album Name', required: true, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.fields_for :photos, @album.photos_for_form do |photo|  %>
+      <div class="nested-photo-form">
+        <div class="form-group">
+          <%= photo.text_field :tag_line, placeholder: 'Photo Tag Line', required: true, class: 'form-control' %>
+        </div>
+        <% if (img_url = photo.object.try(:image_url)).present? %>
+          <div class="form-group">
+            <div class="col-sm-6 col-md-4">
+              <%= image_tag(img_url, width: 100, height: 100) %>
+            </div>
+            <div class="col-sm-6 col-md-7">
+              <%= photo.file_field :image, class: 'form-control' %>
+            </div>
+          </div>
+        <% else %>
+          <div class="form-group">
+            <%= photo.file_field :image, class: 'form-control', required: true %>
+          </div>
+        <% end %>
+        <%= photo.link_to_remove "Remove this Image" %>
+      </div>
+    <% end %>
+    <div class="form-group">
+      <%= f.link_to_add "Add a Image", :photos %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.button :submit, class: 'btn btn-primary btn-md' %>
+  </div>
+<% end %>
+</div>

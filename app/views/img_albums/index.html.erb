@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <% if @albums.present? %>
+      <% @albums.each do |album| %>
+        <div class="col-sm-12 col-md-6 col-lg-4" style="margin-bottom:10px;">
+          <div class="card">
+            <div class="card-block">
+              <h4 class="card-title"><%= album.name %></h4>
+              <h6 class="card-subtitle mb-2 text-muted">By <%= get_name(album.user.email) %></h6>
+              <p class="card-text text-small"><%= album.created_at.strftime('%b %d, %Y') %></p>
+              <%= link_to 'See Album', img_album_path(album), class: 'card-link' %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="row">
+        <div class="text-center">
+          <h2>No Albums</h2>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

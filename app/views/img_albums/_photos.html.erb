@@ -1,0 +1,22 @@
+<div class="album text-muted">
+  <div class="container">
+    <div class="row">
+      <% photos.each do |photo| %>
+        <div class="col-sm-12 col-md-6 col-lg-4">
+        <div class="card">
+          <%= image_tag(photo.image_url, alt: 'Card Image', height: 200, width:256) %>
+          <div class='card-text'>
+            <%= photo.tag_line %>
+          </div>
+          <% if home_page %>
+            <%= link_to "By #{get_name(photo.img_album.user.email)}", user_path(photo.img_album.user), class: 'card-link' %>
+            <div class="text-small">
+              <%= photo.created_at.strftime('%b %d, %Y') %>
+            </div>
+          <% end %>
+        </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

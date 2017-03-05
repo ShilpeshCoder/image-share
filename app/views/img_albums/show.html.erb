@@ -1,0 +1,18 @@
+<%= stylesheet_link_tag 'album' %>
+<section class="jumbotron text-center">
+  <div class="container">
+    <h1 class="jumbotron-heading"><%= @album.name %></h1>
+    <div style="margin:10px 0px;">
+      <span class="text-muted"><%= "By #{get_name(@album.user.email)}"%></span>
+      <span class="text-small"><%= @album.created_at.strftime('%b %d, %Y') %></span>
+    </div>
+    <p>
+      <%= link_to 'Show All Albums', img_albums_path, class: 'btn btn-primary' %>
+      <%= link_to 'Show Albums', user_path(@album.user), class: 'btn btn-success' %>
+      <% if current_user.present? && current_user.id == @album.user.id %>
+        <%= link_to 'Edit Album', edit_img_album_path(@album), class: 'btn btn-warning' %>
+      <% end %>
+    </p>
+  </div>
+</section>
+<%= render partial: '/img_albums/photos', locals: {photos: @album.photos, home_page: false} %>

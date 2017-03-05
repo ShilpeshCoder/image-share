@@ -1,0 +1,41 @@
+== README
+
+This README would normally document whatever steps are necessary to get the
+application up and running.
+
+Things you may want to cover:
+
+* Ruby version : 2.3.0p0
+
+* Rails version : 4.2.5
+
+* System dependencies
+
+* Configuration
+
+* Database creation
+
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* Gems used : 1. bootstrap => for styling
+  2. carrierwave => for image uploading
+  3. devise => for user login and authentication
+  4. nested_form => for nested forms
+  
+* Description : 
+  This is simple image album application where user can login and make album.
+  Album has name, photos, created date , owner(25 photos per album can be uploaded).
+  Photo has tag_line, created_date, owner.
+  User can create, edit multiple albums.
+  Application's home page will display last 25 images uploaded along with it's owner and created date.
+  Anyone can browse any album.
+
+
+Please feel free to use a different markup language if you do not plan to run
+<tt>rake doc:app</tt>.

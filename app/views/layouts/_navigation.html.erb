@@ -1,0 +1,20 @@
+<nav class="navbar navbar-toggleable-md navbar-light" style="background-color: #e3f2fd; margin-bottom: 20px;">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <%= link_to 'Image Album', root_path, class: 'navbar-brand' %>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item"><%= link_to 'See All Albums', img_albums_path, class: 'nav-link' %></li>
+      <% if user_signed_in? %>
+        <!--This block is only visible to signed in users -->
+        <li class="nav-item"><%= link_to 'New Album', new_img_album_path, class: 'nav-link' %></li>
+        <li class="nav-item"><%= link_to 'My Albums', user_path(current_user), class: 'nav-link'  %></li>
+        <li class="nav-item"><%= link_to 'Logout', destroy_user_session_path, :method => :delete, class: 'nav-link' %></li>
+        <!-- The block ends here -->
+      <% else %>
+        <li class="nav-item"><%= link_to 'Login', new_user_session_path, class: 'nav-link'  %></li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
